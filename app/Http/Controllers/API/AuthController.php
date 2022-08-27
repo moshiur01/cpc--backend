@@ -39,11 +39,6 @@ class AuthController extends Controller
 
             ]);
 
-
-            //generate user token
-
-            // return $user->createToken('token-name', ['server:update'])->plainTextToken;
-
             $token =  $user->createToken($user->email . '_Token',)->plainTextToken;
 
             // user end a data pathano 
@@ -58,6 +53,48 @@ class AuthController extends Controller
                 "token" => $token,
                 "message" => 'Registered Successfully',
             ]);
+        }
+    }
+
+    // login 
+    public function login(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+
+            "email" => "required|email|max:191",
+            "password" => "required",
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'validation_Errors' => $validator->messages(),
+            ]);
+        } else {
+            $user = User::where('email', $request->email)->first();
+
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'status' => '401',
+                    'message' => 'Invalid Credentials',
+                ]);
+            } else {
+
+                $token =  $user->createToken($user->email . '_Token',)->plainTextToken;
+
+                // font end a data pathano 
+
+                return response()->json([
+                    'status' => 200,
+                    "userName" => $user->name,
+                    "email" => $user->email,
+                    "phone" => $user->phone,
+                    "stuId" => $user->stu_id,
+                    "userImg" => $user->user_img,
+                    "token" => $token,
+                    "message" => 'Login Successfully',
+                ]);
+            }
         }
     }
 }
