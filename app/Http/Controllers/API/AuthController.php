@@ -105,7 +105,7 @@ class AuthController extends Controller
         // ignore the tokens error it works successfully 
         auth()->user()->tokens()->delete();
         return response()->json([
-            'status' => "200",
+            'status' => 200,
             "message" => "logout Successfully"
         ]);
     }
