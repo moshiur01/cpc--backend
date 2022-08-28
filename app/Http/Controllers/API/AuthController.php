@@ -82,7 +82,7 @@ class AuthController extends Controller
 
                 $token =  $user->createToken($user->email . '_Token',)->plainTextToken;
 
-                // font end a data pathano 
+                // send response to frontend
 
                 return response()->json([
                     'status' => 200,
@@ -96,5 +96,17 @@ class AuthController extends Controller
                 ]);
             }
         }
+    }
+
+    // logout 
+    public function logout()
+    {
+
+        // ignore the tokens error it works successfully 
+        auth()->user()->tokens()->delete();
+        return response()->json([
+            'status' => "200",
+            "message" => "logout Successfully"
+        ]);
     }
 }
