@@ -35,6 +35,7 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'stu_id' => $request->id,
+                'role' => 'user',
                 'phone' => $request->phone,
                 'user_img' => 'default'
 
@@ -48,10 +49,11 @@ class AuthController extends Controller
                 'status' => 200,
                 "userName" => $user->name,
                 "userImg" => $user->user_img,
-                "uId" => $user->u_id,
+                "uid" => $user->u_id,
                 "email" => $user->email,
                 "phone" => $user->phone,
                 "stuId" => $user->stu_id,
+                "role" => $user->role,
                 "userImg" => $user->user_img,
                 "token" => $token,
                 "message" => 'Registered Successfully',
@@ -78,7 +80,7 @@ class AuthController extends Controller
 
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return response()->json([
-                    'status' => '401',
+                    'status' => 401,
                     'message' => 'Invalid Credentials',
                 ]);
             } else {
@@ -90,10 +92,11 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => 200,
                     "userName" => $user->name,
-                    "uId" => $user->u_id,
+                    "uid" => $user->u_id,
                     "email" => $user->email,
                     "phone" => $user->phone,
                     "stuId" => $user->stu_id,
+                    "role" => $user->role,
                     "userImg" => $user->user_img,
                     "token" => $token,
                     "message" => 'Login Successfully',
