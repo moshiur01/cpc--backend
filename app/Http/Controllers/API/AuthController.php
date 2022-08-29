@@ -30,12 +30,13 @@ class AuthController extends Controller
             $user = User::create([
 
                 // DB's column name=> value 
-
+                'u_id' => $request->uid,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'stu_id' => $request->id,
                 'phone' => $request->phone,
+                'user_img' => 'default'
 
             ]);
 
@@ -46,6 +47,8 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 200,
                 "userName" => $user->name,
+                "userImg" => $user->user_img,
+                "uId" => $user->u_id,
                 "email" => $user->email,
                 "phone" => $user->phone,
                 "stuId" => $user->stu_id,
@@ -87,6 +90,7 @@ class AuthController extends Controller
                 return response()->json([
                     'status' => 200,
                     "userName" => $user->name,
+                    "uId" => $user->u_id,
                     "email" => $user->email,
                     "phone" => $user->phone,
                     "stuId" => $user->stu_id,
