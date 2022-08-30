@@ -30,7 +30,7 @@ class AuthController extends Controller
             $user = User::create([
 
                 // DB's column name=> value 
-                'u_id' => $request->uid,
+                'uid' => $request->uid,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -47,14 +47,15 @@ class AuthController extends Controller
 
             return response()->json([
                 'status' => 200,
-                "userName" => $user->name,
-                "userImg" => $user->user_img,
-                "uid" => $user->u_id,
+                "name" => $user->name,
+                "uid" => $user->uid,
                 "email" => $user->email,
                 "phone" => $user->phone,
-                "stuId" => $user->stu_id,
+                "stu_id" => $user->stu_id,
                 "role" => $user->role,
-                "userImg" => $user->user_img,
+                "user_img" => $user->user_img,
+                "created_at" => $user->created_at,
+                "updated_at" => $user->updated_at,
                 "token" => $token,
                 "message" => 'Registered Successfully',
             ]);
@@ -91,13 +92,15 @@ class AuthController extends Controller
 
                 return response()->json([
                     'status' => 200,
-                    "userName" => $user->name,
-                    "uid" => $user->u_id,
+                    "name" => $user->name,
+                    "uid" => $user->uid,
                     "email" => $user->email,
                     "phone" => $user->phone,
-                    "stuId" => $user->stu_id,
+                    "stu_id" => $user->stu_id,
                     "role" => $user->role,
-                    "userImg" => $user->user_img,
+                    "created_at" => $user->created_at,
+                    "updated_at" => $user->updated_at,
+                    "user_img" => $user->user_img,
                     "token" => $token,
                     "message" => 'Login Successfully',
                 ]);
@@ -114,6 +117,18 @@ class AuthController extends Controller
         return response()->json([
             'status' => 200,
             "message" => "logout Successfully"
+        ]);
+    }
+
+
+    //get all the user
+    public function index()
+    {
+        $users = User::all();
+
+        return response()->json([
+            'status' => 200,
+            'users' => $users
         ]);
     }
 }

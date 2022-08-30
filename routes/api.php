@@ -5,7 +5,7 @@ use App\Http\Controllers\API\EventPostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
+// authentication 
 Route::post('register', [AuthController::class, 'register']);
 
 Route::post('login', [AuthController::class, 'login']);
@@ -14,6 +14,10 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
+
+
+//get all the users
+Route::get('allUsers', [AuthController::class, 'index']);
 
 Route::post('createEvent', [EventPostController::class, 'store']);
 
