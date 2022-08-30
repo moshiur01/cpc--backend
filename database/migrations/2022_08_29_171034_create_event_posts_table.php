@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('event_posts', function (Blueprint $table) {
             $table->id();
-            $table->string('eventID')->nullable();
+            $table->string('event_id')->nullable();
             $table->string('title')->nullable();
-            $table->string('startDate')->nullable();
-            $table->string('endDate')->nullable();
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->string('description')->nullable();
-            $table->string('coverImage')->nullable();
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }

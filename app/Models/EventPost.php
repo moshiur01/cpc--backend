@@ -11,11 +11,11 @@ class EventPost extends Model
     protected $table = 'event_posts';
     protected $fillable = [
 
-        'eventID',
+        'event_id',
         'title',
-        'startDate',
-        'endDate',
+        'start_date',
+        'end_date',
         'description',
-        'coverImage',
+        'cover_image',
     ];
 }

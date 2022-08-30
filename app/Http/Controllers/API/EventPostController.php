@@ -30,10 +30,10 @@ class EventPostController extends Controller
             $event = new EventPost;
             //db's column name= req.name(come from frontend)
             $event->title = $request->input("title");
-            $event->startDate = $request->input("startDate");
-            $event->endDate = $request->input("endDate");
+            $event->start_date = $request->input("startDate");
+            $event->end_date = $request->input("endDate");
             $event->description = $request->input("description");
-            $event->eventID = $request->input("eventID");
+            $event->event_id = $request->input("eventID");
 
             //store image
 
@@ -47,7 +47,7 @@ class EventPostController extends Controller
                 $fileName = 'uploads/eventCovers/event-' . $eventID . '.' . $imageType;
 
                 file_put_contents($fileName, $image_base64);
-                $event->coverImage =  $fileName;
+                $event->cover_image =  $fileName;
             }
             $event->save();
 
@@ -55,12 +55,12 @@ class EventPostController extends Controller
 
                 "status" => 200,
                 "message" => 'event created successfully',
-                "eventID" => $event->eventID,
+                "event_id" => $event->event_id,
                 "title" => $event->title,
-                "startDate" => $event->startDate,
-                "endDate" => $event->endDate,
+                "start_date" => $event->start_date,
+                "end_date" => $event->end_date,
                 "description" => $event->description,
-                "coverImage" => $event->coverImage,
+                "cover_image" => $event->cover_image,
             ]);
         }
     }
