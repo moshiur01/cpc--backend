@@ -19,6 +19,10 @@ Route::middleware('auth:sanctum')->group(function () {
 //get all the users
 Route::get('allUsers', [AuthController::class, 'index']);
 
+
+//get all the users
+Route::get('allEvents', [EventPostController::class, 'index']);
+
 Route::post('createEvent', [EventPostController::class, 'store']);
 
 

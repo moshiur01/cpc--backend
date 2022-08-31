@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\Validator;
 
 class EventPostController extends Controller
 {
+
+    //add a new event in DB
     public function store(Request $request)
     {
 
         // validate  the form
         $validator = Validator::make($request->all(), [
+
+            // frontend data validation
             'title' => 'required|max:191',
             'coverImage' => 'required',
             'description' => 'required',
@@ -63,5 +67,19 @@ class EventPostController extends Controller
                 "cover_image" => $event->cover_image,
             ]);
         }
+    }
+
+    //get all events
+
+
+    //get all the user
+    public function index()
+    {
+        $events = EventPost::all();
+
+        return response()->json([
+            'status' => 200,
+            'events' => $events
+        ]);
     }
 }
