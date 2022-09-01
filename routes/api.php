@@ -19,10 +19,17 @@ Route::middleware('auth:sanctum')->group(function () {
 //get all the users
 Route::get('allUsers', [AuthController::class, 'index']);
 
+//post user role as admin
+Route::put('manageAdmin/{uid}', [AuthController::class, 'update']);
 
-//get all the users
+
+
+
+
+//get all the events
 Route::get('allEvents', [EventPostController::class, 'index']);
 
+//post events to db
 Route::post('createEvent', [EventPostController::class, 'store']);
 
 

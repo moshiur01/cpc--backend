@@ -131,4 +131,42 @@ class AuthController extends Controller
             'users' => $users
         ]);
     }
+
+    // edit 
+    public function edit($uid)
+    {
+        return response()->json(User::whereId($uid)->first());
+    }
+
+
+
+    //update the suer role as admin
+    public function update(Request $request, $uid)
+    {
+
+        if ($request->role === 'admin') {
+
+            $user = User::whereuid($uid)->first();
+
+            $user->update([
+                'role' => $request->role,
+
+            ]);
+            return response()->json([
+                'status' => 200,
+                "message" => "Admin  Added Successfully"
+            ]);
+        } elseif ($request->role === 'user') {
+            $user = User::whereuid($uid)->first();
+
+            $user->update([
+                'role' => $request->role,
+
+            ]);
+            return response()->json([
+                'status' => 200,
+                "message" => "Admin  Removed Successfully"
+            ]);
+        }
+    }
 }
