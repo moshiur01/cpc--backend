@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\EventPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 class EventPostController extends Controller
@@ -82,5 +83,32 @@ class EventPostController extends Controller
             'status' => 200,
             'events' => $events
         ]);
+    }
+
+
+    // delete an event
+
+    public function destroy($event_id)
+    {
+        $event = EventPost::whereevent_id($event_id)->first();
+
+        $destination = $event->cover_image;
+
+        if ($event) {
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $event->delete();
+            return response()->json(([
+                'status' => 200,
+                'message' => "event removed",
+            ]));
+        } else {
+            return response()->json(([
+
+                'status' => 404,
+                'message' => "event can't remove",
+            ]));
+        }
     }
 }

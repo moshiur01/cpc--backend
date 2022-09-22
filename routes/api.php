@@ -32,6 +32,9 @@ Route::get('allEvents', [EventPostController::class, 'index']);
 //post events to db
 Route::post('createEvent', [EventPostController::class, 'store']);
 
+//delete an event
+Route::delete('deleteEvent/{event_id}', [EventPostController::class, 'destroy']);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
