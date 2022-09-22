@@ -37,7 +37,7 @@ class AuthController extends Controller
                 'stu_id' => $request->id,
                 'role' => 'user',
                 'phone' => $request->phone,
-                'user_img' => 'default'
+                'user_img' => 'default',
 
             ]);
 
@@ -54,6 +54,8 @@ class AuthController extends Controller
                 "stu_id" => $user->stu_id,
                 "role" => $user->role,
                 "user_img" => $user->user_img,
+                "user_cover" => $user->user_cover,
+                "badges" => $user->badges,
                 "created_at" => $user->created_at,
                 "updated_at" => $user->updated_at,
                 "token" => $token,
@@ -98,9 +100,12 @@ class AuthController extends Controller
                     "phone" => $user->phone,
                     "stu_id" => $user->stu_id,
                     "role" => $user->role,
+                    "user_img" => $user->user_img,
+                    "user_cover" => $user->user_cover,
+                    "badges" => $user->badges,
                     "created_at" => $user->created_at,
                     "updated_at" => $user->updated_at,
-                    "user_img" => $user->user_img,
+
                     "token" => $token,
                     "message" => 'Login Successfully',
                 ]);
