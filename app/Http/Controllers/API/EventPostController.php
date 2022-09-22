@@ -38,6 +38,7 @@ class EventPostController extends Controller
             $event->end_date = $request->input("endDate");
             $event->description = $request->input("description");
             $event->event_id = $request->input("eventID");
+            $event->author_id = $request->input("uid");
 
             //store image
 
@@ -72,7 +73,7 @@ class EventPostController extends Controller
     //get all events
 
 
-    //get all the user
+    //get all the events
     public function index()
     {
         $events = EventPost::all();

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class EventPost extends Model
 {
     use HasFactory;
-    protected $table = 'event_posts';
+    protected $table = 'events';
     protected $fillable = [
 
         'event_id',
@@ -17,5 +17,6 @@ class EventPost extends Model
         'end_date',
         'description',
         'cover_image',
+        'author_id',
     ];
 }
