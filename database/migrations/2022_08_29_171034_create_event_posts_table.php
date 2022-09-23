@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('event_posts', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('event_id')->nullable();
             $table->string('title')->nullable();
@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('end_date')->nullable();
             $table->longText('description')->nullable();
             $table->string('cover_image')->nullable();
+            $table->string('author_id')->nullable();
             $table->timestamps();
         });
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\CertificateController;
 use App\Http\Controllers\API\EventPostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,12 @@ Route::post('createEvent', [EventPostController::class, 'store']);
 Route::delete('deleteEvent/{event_id}', [EventPostController::class, 'destroy']);
 
 
+//---------certificate--------//
+//post a certificate
+Route::post('createCertificate', [CertificateController::class, 'store']);
+
+// // //get all the certificate
+// Route::get('allCertificates', [CertificateController::class, 'index']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

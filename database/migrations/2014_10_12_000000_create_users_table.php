@@ -18,14 +18,16 @@ return new class extends Migration
             $table->string('uid')->unique();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('role')->nullable();
             $table->string('stu_id')->nullable();
             $table->string('phone')->nullable();
             $table->string('user_img')->nullable();
+            $table->string('cover_img')->default('default');
+            $table->string('role')->nullable();
+            $table->string('badges')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
         });
     }
 
