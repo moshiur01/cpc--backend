@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
-    //add a new event in DB
+    //add a new certificates in DB
     public function store(Request $request)
     {
 
@@ -63,5 +63,18 @@ class CertificateController extends Controller
 
             ]);
         }
+    }
+
+
+
+    //get all the certificates
+    public function index()
+    {
+        $certificates = Certificate::all();
+
+        return response()->json([
+            'status' => 200,
+            'certificates' => $certificates
+        ]);
     }
 }
