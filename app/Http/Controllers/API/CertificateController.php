@@ -77,4 +77,30 @@ class CertificateController extends Controller
             'certificates' => $certificates
         ]);
     }
+
+     // delete an certificate
+
+     public function destroy($certificate_id)
+     {
+         $certificate = Certificate::wherecertificate_id($certificate_id)->first();
+ 
+         $destination = $certificate->certificate_image;
+ 
+         if ($certificate) {
+             if (File::exists($destination)) {
+                 File::delete($destination);
+             }
+             $event->delete();
+             return response()->json(([
+                 'status' => 200,
+                 'message' => "certificate removed",
+             ]));
+         } else {
+             return response()->json(([
+ 
+                 'status' => 404,
+                 'message' => "certificate can't remove",
+             ]));
+         }
+     }
 }

@@ -15,15 +15,15 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
 
 //get all the users
 Route::get('allUsers', [AuthController::class, 'index']);
 
 //post user role as admin
 Route::put('manageAdmin/{uid}', [AuthController::class, 'update']);
+
+
 
 
 
@@ -41,5 +41,12 @@ Route::delete('deleteEvent/{event_id}', [EventPostController::class, 'destroy'])
 //post a certificate
 Route::post('createCertificate', [CertificateController::class, 'store']);
 
-// //get all the certificate
-Route::get('allCertificates', [CertificateController::class, 'index']);
+// get all the certificate
+Route::get('certificates', [CertificateController::class, 'index']);
+
+//delete an event
+Route::delete('deleteCertificate/{certificate_id}', [CertificateController::class, 'destroy']);
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
