@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Models\Certificate;
 use Illuminate\Support\Facades\Validator;
@@ -78,29 +79,29 @@ class CertificateController extends Controller
         ]);
     }
 
-     // delete an certificate
+    // delete an certificate
 
-     public function destroy($certificate_id)
-     {
-         $certificate = Certificate::wherecertificate_id($certificate_id)->first();
- 
-         $destination = $certificate->certificate_image;
- 
-         if ($certificate) {
-             if (File::exists($destination)) {
-                 File::delete($destination);
-             }
-             $event->delete();
-             return response()->json(([
-                 'status' => 200,
-                 'message' => "certificate removed",
-             ]));
-         } else {
-             return response()->json(([
- 
-                 'status' => 404,
-                 'message' => "certificate can't remove",
-             ]));
-         }
-     }
+    public function destroy($certificate_id)
+    {
+        $certificate = Certificate::wherecertificate_id($certificate_id)->first();
+
+        $destination = $certificate->certificate_image;
+
+        if ($certificate) {
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            $certificate->delete();
+            return response()->json(([
+                'status' => 200,
+                'message' => "certificate removed",
+            ]));
+        } else {
+            return response()->json(([
+
+                'status' => 404,
+                'message' => "certificate can't remove",
+            ]));
+        }
+    }
 }
