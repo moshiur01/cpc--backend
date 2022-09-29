@@ -47,6 +47,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'status' => 200,
+                "display_name" => $user->display_name,
                 "name" => $user->name,
                 "uid" => $user->uid,
                 "email" => $user->email,
@@ -94,6 +95,7 @@ class AuthController extends Controller
 
                 return response()->json([
                     'status' => 200,
+                    "display_name" => $user->display_name,
                     "name" => $user->name,
                     "uid" => $user->uid,
                     "email" => $user->email,
@@ -145,7 +147,7 @@ class AuthController extends Controller
 
 
 
-    //update the suer role as admin
+    //update the user role as admin
     public function update(Request $request, $uid)
     {
 

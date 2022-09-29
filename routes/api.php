@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CertificateController;
 use App\Http\Controllers\API\EventPostController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,16 +17,26 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 });
 
-
 //get all the users
 Route::get('allUsers', [AuthController::class, 'index']);
 
-//post user role as admin
+//update user role as admin
 Route::put('manageAdmin/{uid}', [AuthController::class, 'update']);
 
 
+//---------users--------//
+
+//update user img
+Route::put('updateUserImg/{uid}', [UserController::class, 'update']);
+
+//update user cover img
+Route::put('updateUserCoverImg/{uid}', [UserController::class, 'update']);
+
+//update user display name
+Route::put('updateUserDisplayName/{uid}', [UserController::class, 'update']);
 
 
+//---------events--------//
 
 //get all the events
 Route::get('allEvents', [EventPostController::class, 'index']);
@@ -46,6 +57,10 @@ Route::get('certificates', [CertificateController::class, 'index']);
 
 //delete an event
 Route::delete('deleteCertificate/{certificate_id}', [CertificateController::class, 'destroy']);
+
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
