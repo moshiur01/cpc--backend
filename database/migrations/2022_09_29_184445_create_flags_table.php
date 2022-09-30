@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('flags', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id')->nullable();
-            $table->boolean('website_update')->default(false);
-            $table->boolean('notifications')->default(false);
-            $table->boolean('new_user')->default(true);
+            $table->string('uid')->nullable();
+            $table->string('website_update')->default("false");
+            $table->string('notifications')->default("false");
+            $table->string('new_user')->default("true");
+            $table->string('new_admin')->default("false");
             $table->timestamps();
         });
     }

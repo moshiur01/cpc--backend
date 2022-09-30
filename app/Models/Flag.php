@@ -11,9 +11,10 @@ class Flag extends Model
     protected $table = 'flags';
     protected $fillable = [
 
-        'user_id',
+        'uid',
         'website_update',
         'notifications',
         'new_user',
+        'new_admin',
     ];
 }

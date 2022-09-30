@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CertificateController;
 use App\Http\Controllers\API\EventPostController;
+use App\Http\Controllers\API\FlagController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,13 @@ Route::get('certificates', [CertificateController::class, 'index']);
 //delete an event
 Route::delete('deleteCertificate/{certificate_id}', [CertificateController::class, 'destroy']);
 
+//--------Flags--------//
 
+// get all the flags
+Route::get('flags', [FlagController::class, 'index']);
+
+//initial state of a flag
+Route::post('initialFlag', [FlagController::class, 'store']);
 
 
 
