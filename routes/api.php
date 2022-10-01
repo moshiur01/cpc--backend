@@ -67,6 +67,10 @@ Route::get('flags', [FlagController::class, 'index']);
 //initial state of a flag
 Route::post('initialFlag', [FlagController::class, 'store']);
 
+//update admin notification status
+Route::put('newAdminChange/{uid}', [FlagController::class, 'update']);
+
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

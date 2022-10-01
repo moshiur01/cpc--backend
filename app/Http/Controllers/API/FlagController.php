@@ -24,9 +24,6 @@ class FlagController extends Controller
     // add initial flag status 
     public function store(Request $request)
     {
-
-
-
         $flag = Flag::create([
 
             // DB's column name=> value 
@@ -37,33 +34,33 @@ class FlagController extends Controller
     }
 
 
-    // // //update the flag table 
-    // public function update(Request $request, $uid)
-    // {
+    // //update the flag table 
+    public function update(Request $request, $uid)
+    {
 
-    //     if ($request->role === 'admin') {
+        if ($request->event === 'new_admin_false') {
 
-    //         $user = Flag::whereuid($uid)->first();
+            $flag = Flag::whereuid($uid)->first();
 
-    //         $user->update([
-    //             'role' => $request->role,
+            $flag->update([
+                'new_admin' => $request->status,
 
-    //         ]);
-    //         return response()->json([
-    //             'status' => 200,
-    //             "message" => "Admin  Added Successfully"
-    //         ]);
-    //     } elseif ($request->role === 'user') {
-    //         $user = Flag::whereuid($uid)->first();
+            ]);
+            return response()->json([
+                'status' => 200,
+                "message" => "Admin status Updated Successfully"
+            ]);
+        } elseif ($request->event === 'new_admin_true') {
+            $user = Flag::whereuid($uid)->first();
 
-    //         $user->update([
-    //             'role' => $request->role,
+            $user->update([
+                'new_admin' => $request->status,
 
-    //         ]);
-    //         return response()->json([
-    //             'status' => 200,
-    //             "message" => "Admin  Removed Successfully"
-    //         ]);
-    //     }
-    // }
+            ]);
+            return response()->json([
+                'status' => 200,
+                "message" => "Admin status Updated Successfully"
+            ]);
+        }
+    }
 }
