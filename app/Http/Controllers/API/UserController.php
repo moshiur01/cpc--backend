@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
-    //update the suer role as admin
+    //update the user data
     public function update(Request $request, $uid)
     {
-
-
         if ($request->event === 'proImgChange') {
             $user = User::whereuid($uid)->first();
             //store image
@@ -69,7 +67,7 @@ class UserController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                "message" => "Cover Image Updated Successfully"
+                "message" => "Display Name Updated Successfully"
             ]);
         }
     }
