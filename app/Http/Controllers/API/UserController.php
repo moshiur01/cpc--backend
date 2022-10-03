@@ -16,13 +16,19 @@ class UserController extends Controller
             $user = User::whereuid($uid)->first();
             //store image
             if ($request->image) {
+                $destination = $request -> oldLink;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
+                
                 // $folderPath = "uploads/eventCovers/";
+                $rnd = $request -> rnd;
                 $userID = $uid;
                 $base64Image = explode(";base64,", $request->image);
                 $explodeImage = explode("image/", $base64Image[0]);
                 $imageType = $explodeImage[1];
                 $image_base64 = base64_decode($base64Image[1]);
-                $fileName = 'uploads/users/userImg/user-' . $userID . '.' . $imageType;
+                $fileName = 'uploads/users/userImg/user-' . $userID."-".$rnd.'.'. $imageType;
 
                 file_put_contents($fileName, $image_base64);
                 $user->update([
@@ -40,13 +46,19 @@ class UserController extends Controller
 
             //store image
             if ($request->image) {
+                $destination = $request -> oldLink;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
+                
                 // $folderPath = "uploads/eventCovers/";
+                $rnd = $request -> rnd;
                 $userID = $uid;
                 $base64Image = explode(";base64,", $request->image);
                 $explodeImage = explode("image/", $base64Image[0]);
                 $imageType = $explodeImage[1];
                 $image_base64 = base64_decode($base64Image[1]);
-                $fileName = 'uploads/users/userCoverImg/user-' . $userID . '.' . $imageType;
+                $fileName = 'uploads/users/userCoverImg/user-' . $userID."-".$rnd.'.'.$imageType;
 
                 file_put_contents($fileName, $image_base64);
                 $user->update([
