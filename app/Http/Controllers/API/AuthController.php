@@ -161,7 +161,18 @@ class AuthController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                "message" => "Admin  Added Successfully"
+                "message" => "Admin Added Successfully"
+            ]);
+        }elseif ($request->role === 'moderator') {
+            $user = User::whereuid($uid)->first();
+
+            $user->update([
+                'role' => $request->role,
+
+            ]);
+            return response()->json([
+                'status' => 200,
+                "message" => "Moderator Added Successfully"
             ]);
         } elseif ($request->role === 'user') {
             $user = User::whereuid($uid)->first();
@@ -172,7 +183,7 @@ class AuthController extends Controller
             ]);
             return response()->json([
                 'status' => 200,
-                "message" => "Admin  Removed Successfully"
+                "message" => "Demoted Successfully"
             ]);
         }
     }
